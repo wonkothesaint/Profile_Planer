@@ -1,4 +1,4 @@
-from src.Profile.Asset import *
+from profile_planner.Profile.Asset import *
 
 
 class Profile:

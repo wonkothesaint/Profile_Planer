@@ -1,4 +1,4 @@
-import src.Tax as Tax
+import profile_planner.Tax as Tax
 
 
 class Salary:

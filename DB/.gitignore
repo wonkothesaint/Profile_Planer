@@ -1,7 +1,0 @@
-# Ignore everything
-*
-
-# But not these files...
-!_salary.json
-!_assets.json
-!_debts.json

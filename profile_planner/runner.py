@@ -1,6 +1,6 @@
-import src.Profile as Profile
-import src.Salary as Salary
-import src.Utils as Utils
+import profile_planner.Profile as Profile
+import profile_planner.Salary as Salary
+import profile_planner.Utils as Utils
 import json
 
 
@@ -15,9 +15,9 @@ period = {'duration': 10,
 user = ''
 expenses = 6000
 
-with open('../DB/'+user+'_salary.json') as f:
+with open('../database/'+user+'_salary.json') as f:
     salary_args = json.load(f)
-with open('../DB/'+user+'_assets.json') as f:
+with open('../database/'+user+'_assets.json') as f:
     assets_args = json.load(f)
 
 salary = Salary.Salary(**salary_args)
