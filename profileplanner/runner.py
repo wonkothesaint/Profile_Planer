@@ -2,7 +2,8 @@ import Profile
 import Salary
 import Utils as Utils
 import json
-
+from pathlib import Path
+import os
 
 period = {'duration': 10,
           'pay_debts': [],
@@ -15,9 +16,12 @@ period = {'duration': 10,
 user = ''
 expenses = 6000
 
-with open('../database/'+user+'_salary.json') as f:
+current_dir = os.path.dirname(__file__)
+salary_path = Path(os.path.join(current_dir, '..', 'database', user+'_salary.json'))
+assets_path = Path(os.path.join(current_dir, '..', 'database', user+'_assets.json'))
+with open(salary_path) as f:
     salary_args = json.load(f)
-with open('../database/'+user+'_assets.json') as f:
+with open(assets_path) as f:
     assets_args = json.load(f)
 
 salary = Salary.Salary(**salary_args)
