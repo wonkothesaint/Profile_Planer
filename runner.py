@@ -8,11 +8,11 @@ period = {'duration': 10,
           'pay_debts': [],
           'default_invest': 'IBKR',
           'severance_plan': {'pension_rewards': 'pension',
-                             'gemel_rewards': 'gemel_rewards',
-                             'gemel_compensation': 'gemel_compensation'}
+                             'above_pension_rewards': 'gemel_rewards',
+                             'above_pension_compensation': 'gemel_compensation'}
           }
 
-user = 'wonko'
+user = ''
 expenses = 6000
 
 with open('../DB/'+user+'_salary.json') as f:

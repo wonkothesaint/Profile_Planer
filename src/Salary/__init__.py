@@ -71,12 +71,13 @@ class Salary:
         severances = {}
         if not self.is_rewards_compensation_seperated:
             severances['pension'] = min(self.rewards + self.compensation, self.pension_ceiling)
-            severances['gemel'] = self.rewards + self.compensation - severances['pension']
+            severances['above_pension'] = self.rewards + self.compensation - severances['pension']
         else:
             severances['pension_rewards'] = min(self.rewards, self.pension_ceiling)
             severances['pension_compensation'] = min(self.compensation,
                                                      self.pension_ceiling - severances['pension_rewards'])
-            severances['gemel_rewards'] = self.rewards - severances['pension_rewards']
-            severances['gemel_compensation'] = self.compensation - severances['pension_compensation']
+            severances['above_pension_rewards'] = self.rewards - severances['pension_rewards']
+            severances['above_pension_compensation'] = self.compensation - severances['pension_compensation']
         severances['ishtalmut'] = min(self.ishtalmut, self.ishtalmut_ceiling)
         return severances
+
