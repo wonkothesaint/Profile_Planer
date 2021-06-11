@@ -1,28 +1,8 @@
-import Profile
-import Salary
-import Utils
+import src.Profile as Profile
+import src.Salary as Salary
+import src.Utils as Utils
+import json
 
-ibkr_args = {'value': 797625,
-             'deposit_fee': 0,
-             'management_fees_yearly': 0.06,
-             'yield_yearly': 7.17,
-             'dividends_yield_yearly': 1.6,
-             'tax': 25,
-             'tax_dividends': 25,
-             'taxable': 200000}
-
-salary_args = {'gross': 38800,
-               'yearly_bonus': 55500,
-               'credit_points': 2.25,
-               'rewards_percents': {'name': 'Gemel',
-                                    'employer': 6.5,
-                                    'employee': 6},
-               'compensation_percents': {'name': 'Gemel_compensation',
-                                         'employer': 8.33},
-               'ishtalmut_percents': {'name': 'Keren_ishtalmut',
-                                      'employer': 7.5,
-                                      'employee': 2.5}
-               }
 
 period = {'duration': 10,
           'pay_debts': [],
@@ -32,19 +12,23 @@ period = {'duration': 10,
                              'gemel_compensation': 'gemel_compensation'}
           }
 
+user = 'wonko'
 expenses = 6000
+
+with open('../DB/'+user+'_salary.json') as f:
+    salary_args = json.load(f)
+with open('../DB/'+user+'_assets.json') as f:
+    assets_args = json.load(f)
 
 salary = Salary.Salary(**salary_args)
 print(salary.net)
 print(salary.taxable_gross)
 print(salary.severances)
 
-
 profile = Profile.Profile()
-profile.add_asset('pension', ibkr_args)
-profile.add_asset('gemel_rewards', ibkr_args)
-profile.add_asset('gemel_compensation', ibkr_args)
-profile.add_asset('IBKR', ibkr_args)
+for asset in assets_args.keys():
+    profile.add_asset(asset, assets_args[asset])
+
 # Profile.add_asset(asset)
 plan = [period]
 

@@ -1,4 +1,4 @@
-from Profile.Asset import *
+from src.Profile.Asset import *
 
 
 class Profile:
