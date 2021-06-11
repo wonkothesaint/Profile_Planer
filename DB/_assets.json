@@ -1,0 +1,57 @@
+{
+  "IBKR":
+  {
+    "value": 100000,
+    "deposit_fee": 0,
+    "management_fees_yearly": 0.06,
+    "yield_yearly": 7.17,
+    "dividends_yield_yearly": 1.6,
+    "tax": 25,
+    "tax_dividends": 25,
+    "taxable": 10000
+  },
+  "pension":
+  {
+    "value": 100000,
+    "deposit_fee": 1,
+    "management_fees_yearly": 0.05,
+    "yield_yearly": 11.72,
+    "dividends_yield_yearly": 0,
+    "tax": 0,
+    "tax_dividends": 0,
+    "taxable": 0
+  },
+  "gemel_rewards":
+  {
+    "value": 100000,
+    "deposit_fee": 0,
+    "management_fees_yearly": 0.06,
+    "yield_yearly": 7.17,
+    "dividends_yield_yearly": 1.6,
+    "tax": 25,
+    "tax_dividends": 25,
+    "taxable": 200000
+  },
+  "gemel_compensation":
+  {
+    "value": 100000,
+    "deposit_fee": 0,
+    "management_fees_yearly": 0.06,
+    "yield_yearly": 7.17,
+    "dividends_yield_yearly": 1.6,
+    "tax": 25,
+    "tax_dividends": 25,
+    "taxable": 200000
+  },
+  "ishtalmut":
+  {
+    "value": 100000,
+    "deposit_fee": 0,
+    "management_fees_yearly": 0.06,
+    "yield_yearly": 7.17,
+    "dividends_yield_yearly": 1.6,
+    "tax": 25,
+    "tax_dividends": 25,
+    "taxable": 200000
+  }
+}
