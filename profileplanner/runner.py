@@ -16,13 +16,14 @@ period = {'duration': 10,
 user = ''
 expenses = 6000
 
-current_dir = os.path.dirname(__file__)
-salary_path = Path(os.path.join(current_dir, '..', 'database', user+'_salary.json'))
-assets_path = Path(os.path.join(current_dir, '..', 'database', user+'_assets.json'))
-with open(salary_path) as f:
-    salary_args = json.load(f)
-with open(assets_path) as f:
-    assets_args = json.load(f)
+dirname = Path(__file__).parent
+project_dir = dirname.parent
+database_dir = project_dir / 'database'
+salary_path = database_dir / user / 'salary.json'
+assets_path = database_dir / user / 'assets.json'
+salary_args = json.loads(salary_path.read_text())
+assets_args = json.loads(assets_path.read_text())
+
 
 salary = Salary.Salary(**salary_args)
 print(salary.net)
@@ -40,14 +41,14 @@ money_pool = 0
 for period in plan:
     for month in range(period['duration']):
         money_pool += salary.net
-        for severance in period['severance_plan'].keys():
+        for severance in period['severance_plan']:
             profile.invest_asset(period['severance_plan'][severance], salary.severances[severance])
         money_pool += profile.progress_month()
         # print(money_pool)
         # print(profile.assets['IBKR'].value)
 
         # pay_debts = period['pay_debts']
-        # for debt in pay_debts.keys():
+        # for debt in pay_debts:
         #     Profile.pay_debt(debt,pay_debts[debt])
         #
         # Profile.invest_asset(period['default_invest'], money_pool)

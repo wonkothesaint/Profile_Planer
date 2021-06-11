@@ -35,9 +35,9 @@ class Salary:
 
     def calc_net(self):
         tax = 0
-        tax += Tax.calc_tax(self.taxable_gross, Tax.tax_table)
-        tax += Tax.calc_tax(self.taxable_gross, Tax.national_insurance)
-        tax += Tax.calc_tax(self.taxable_gross, Tax.health_insurance)
+        tax += Tax.calc_brackets_sum(self.taxable_gross, Tax.tax_brackets)
+        tax += Tax.calc_brackets_sum(self.taxable_gross, Tax.national_insurance_brackets)
+        tax += Tax.calc_brackets_sum(self.taxable_gross, Tax.health_insurance_brackets)
         tax -= Tax.credit_point * self.credit_points
         tax -= Tax.credit_for_pension_insurance
 
