@@ -19,4 +19,3 @@ class Profile:
         for debt in self.debts:
             money_pool -= self.debts[debt].progress_month()
         return money_pool
-
