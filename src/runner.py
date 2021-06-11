@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun  4 09:07:21 2021
-
-@author: wonko
-"""
-
 import Profile
 import Salary
 import Utils
