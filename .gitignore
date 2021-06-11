@@ -4,4 +4,5 @@ __pycache__/
 *$py.class
 
 /venv/
+/.idea/
 /profile_planner/.idea/
