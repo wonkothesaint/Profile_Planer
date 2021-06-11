@@ -1,6 +1,6 @@
-import profile_planner.Profile as Profile
-import profile_planner.Salary as Salary
-import profile_planner.Utils as Utils
+import Profile
+import Salary
+import Utils as Utils
 import json
 
 

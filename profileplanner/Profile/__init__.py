@@ -1,4 +1,4 @@
-from profile_planner.Profile.Asset import *
+from profileplanner.Profile import Asset
 
 
 class Profile:
@@ -7,7 +7,7 @@ class Profile:
         self.debts = {}
 
     def add_asset(self, name, asset_args):
-        self.assets[name] = Asset(**asset_args)
+        self.assets[name] = Asset.Asset(**asset_args)
 
     def invest_asset(self, name, amount):
         self.assets[name].value += amount

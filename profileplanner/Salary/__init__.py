@@ -1,4 +1,4 @@
-import profile_planner.Tax as Tax
+from profileplanner import Tax
 
 
 class Salary:
