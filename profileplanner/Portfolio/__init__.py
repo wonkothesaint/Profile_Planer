@@ -1,7 +1,7 @@
-from profileplanner.Profile import Asset
+from profileplanner.Portfolio import Asset
 
 
-class Profile:
+class Portfolio:
     def __init__(self):
         self.assets = {}
         self.debts = {}

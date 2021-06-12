@@ -1,4 +1,4 @@
-import Profile
+import Portfolio
 import Salary
 import json
 from pathlib import Path
@@ -30,11 +30,11 @@ assets_args = json.loads(assets_path.read_text())
 
 salary = Salary.Salary(**salary_args)
 
-profile = Profile.Profile()
+profile = Portfolio.Portfolio()
 for asset in assets_args:
     profile.add_asset(asset, assets_args[asset])
 
-# Profile.add_asset(asset)
+# Portfolio.add_asset(asset)
 plan = [period]
 
 print(profile.short_report())
@@ -58,6 +58,6 @@ for period in plan:
 print(profile.short_report())
         # pay_debts = period['pay_debts']
         # for debt in pay_debts:
-        #     Profile.pay_debt(debt,pay_debts[debt])
+        #     Portfolio.pay_debt(debt,pay_debts[debt])
         #
-        # Profile.invest_asset(period['default_invest'], money_pool)
+        # Portfolio.invest_asset(period['default_invest'], money_pool)

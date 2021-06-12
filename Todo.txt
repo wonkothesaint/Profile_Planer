@@ -1,0 +1,5 @@
+1. Support portfolio holding sub-portfolios.
+2. Debts holdings and progression.
+3. Support taxable percentage of assets. For example, ishtalmut can be paritally taxable. Pension is taxes change at certein age.
+4. Define RSU asset support.
+5. Connet to online read of finantial data. maybe change assets "value" to "ticket" and "quantity".
