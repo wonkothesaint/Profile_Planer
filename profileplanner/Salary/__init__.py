@@ -7,9 +7,9 @@ class Salary:
         gross,
         yearly_bonus,
         credit_points,
-        rewards_percents=None,
-        compensation_percents=None,
-        ishtalmut_percents=None,
+        rewards_pct=None,
+        compensation_pct=None,
+        ishtalmut_pct=None,
         pension_ceiling=Tax.pension_ceiling,
         ishtalmut_ceiling=Tax.ishtalmut_ceiling,
         is_rewards_compensation_seperated=True,
@@ -17,9 +17,9 @@ class Salary:
         self.gross = gross
         self.yearly_bonus = yearly_bonus
         self.credit_points = credit_points
-        self.rewards_percents = rewards_percents
-        self.compensation_percents = compensation_percents
-        self.ishtalmut_percents = ishtalmut_percents
+        self.rewards_pct = rewards_pct
+        self.compensation_pct = compensation_pct
+        self.ishtalmut_pct = ishtalmut_pct
 
         self.pension_ceiling = pension_ceiling
         self.ishtalmut_ceiling = ishtalmut_ceiling
@@ -35,9 +35,9 @@ class Salary:
     def calc_taxable_gross(self):
         taxable_gross = self.gross
         taxable_gross += self.yearly_bonus / 12
-        ishtalmut_taxable = self.gross * self.ishtalmut_percents["employer"] / 100
+        ishtalmut_taxable = self.gross * self.ishtalmut_pct["employer"] / 100
         ishtalmut_taxable -= (
-            Tax.ishtalmut_ceiling * self.ishtalmut_percents["employer"] / 10
+            Tax.ishtalmut_ceiling * self.ishtalmut_pct["employer"] / 10
         )
         taxable_gross += max(ishtalmut_taxable, 0)
 
@@ -54,8 +54,8 @@ class Salary:
         tax -= Tax.credit_for_pension_insurance
 
         severance = 0
-        severance += self.gross * self.ishtalmut_percents["employee"] / 100
-        severance += self.gross * self.rewards_percents["employee"] / 100
+        severance += self.gross * self.ishtalmut_pct["employee"] / 100
+        severance += self.gross * self.rewards_pct["employee"] / 100
 
         taxable_ishtalmut_not_int_net = (
             min(self.ishtalmut_ceiling, self.ishtalmut) - Tax.ishtalmut_ceiling
@@ -64,22 +64,22 @@ class Salary:
         return self.taxable_gross - taxable_ishtalmut_not_int_net - tax - severance
 
     @staticmethod
-    def get_severance_percent(severance_percent):
-        percent = 0
-        if "employer" in severance_percent:
-            percent += severance_percent["employer"]
-        if "employee" in severance_percent:
-            percent += severance_percent["employee"]
-        return percent
+    def get_severance_pct(severance_pct):
+        pct = 0
+        if "employer" in severance_pct:
+            pct += severance_pct["employer"]
+        if "employee" in severance_pct:
+            pct += severance_pct["employee"]
+        return pct
 
     def calc_rewards(self):
-        return self.gross * self.get_severance_percent(self.rewards_percents) / 100
+        return self.gross * self.get_severance_pct(self.rewards_pct) / 100
 
     def calc_compensation(self):
-        return self.gross * self.get_severance_percent(self.compensation_percents) / 100
+        return self.gross * self.get_severance_pct(self.compensation_pct) / 100
 
     def calc_ishtalmut(self):
-        return self.gross * self.get_severance_percent(self.ishtalmut_percents) / 100
+        return self.gross * self.get_severance_pct(self.ishtalmut_pct) / 100
 
     def calc_severances(self):
         severances = {}

@@ -8,7 +8,7 @@
     "dividends_yield_yearly": 1.6,
     "tax": 25,
     "tax_dividends": 25,
-    "taxable": 10000
+    "gains": 10000
   },
   "pension":
   {
@@ -19,7 +19,7 @@
     "dividends_yield_yearly": 0,
     "tax": 0,
     "tax_dividends": 0,
-    "taxable": 0
+    "gains": 0
   },
   "gemel_rewards":
   {
@@ -30,7 +30,7 @@
     "dividends_yield_yearly": 1.6,
     "tax": 25,
     "tax_dividends": 25,
-    "taxable": 200000
+    "gains": 200000
   },
   "gemel_compensation":
   {
@@ -41,7 +41,7 @@
     "dividends_yield_yearly": 1.6,
     "tax": 25,
     "tax_dividends": 25,
-    "taxable": 200000
+    "gains": 200000
   },
   "ishtalmut":
   {
@@ -52,6 +52,6 @@
     "dividends_yield_yearly": 1.6,
     "tax": 25,
     "tax_dividends": 25,
-    "taxable": 200000
+    "gains": 200000
   }
 }
