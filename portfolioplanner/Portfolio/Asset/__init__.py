@@ -1,4 +1,4 @@
-from profileplanner.Utils import *
+from portfolioplanner.Utils import *
 
 
 class Asset:

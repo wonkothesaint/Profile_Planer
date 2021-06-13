@@ -1,10 +1,14 @@
-from profileplanner.Portfolio import Asset
+from portfolioplanner.Portfolio import Asset
+from portfolioplanner.Portfolio import Debt
 
 
 class Portfolio:
     def __init__(self):
         self.assets = {}
         self.debts = {}
+
+    def add_debt(self, name, debt_args):
+        self.debts[name] = Debt.Debt(**debt_args)
 
     def add_asset(self, name, asset_args):
         self.assets[name] = Asset.Asset(**asset_args)
@@ -16,8 +20,13 @@ class Portfolio:
         money_pool = 0
         for asset in self.assets:
             money_pool += self.assets[asset].progress_month()
+        closed_debts = []
         for debt in self.debts:
             money_pool -= self.debts[debt].progress_month()
+            if self.debts[debt].is_closed():
+                closed_debts.append(debt)
+        for debt in closed_debts:
+            self.debts.pop(debt)
         return money_pool
 
     def short_report(self):
@@ -27,12 +36,12 @@ class Portfolio:
             total_before_tax += self.assets[asset].value
             total_after_tax += self.assets[asset].calc_value_after_tax()
         asset_string = 'Asset total: \n\tBefore tax: ' + str(total_before_tax) + '\n\tAfter tax: ' + str(total_after_tax) + '\n'
-        debts_string = ''
+        debt_to_pay = 0
         for debt in self.debts:
-            pass
-            # debts_string += debt + ': ' + str(self.debts[debt]) + '\n'
+            debt_to_pay += self.debts[debt].ammount
+        debts_string = 'Debt total: ' + str(debt_to_pay) + '\n'
         return asset_string + debts_string + \
-               'Total: \n\tBefore tax: ' + str(total_before_tax) + '\n\tAfter tax: ' + str(total_after_tax) + '\n'
+               'Total: \n\tBefore tax: ' + str(total_before_tax - debt_to_pay) + '\n\tAfter tax: ' + str(total_after_tax - debt_to_pay) + '\n'
 
     def full_report(self):
         total_before_tax = 0

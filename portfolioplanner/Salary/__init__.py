@@ -1,4 +1,4 @@
-from profileplanner import Tax
+from portfolioplanner import Tax
 
 
 class Salary:

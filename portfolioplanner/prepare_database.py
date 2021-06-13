@@ -37,4 +37,4 @@ def assets_excel_to_json(user):
         json.dump(data, json_file, indent=4, separators=(',', ': '))
 
 
-assets_excel_to_json('wonko')
+assets_excel_to_json('Wonko')
