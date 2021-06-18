@@ -1,5 +1,21 @@
-1. Support portfolio holding sub-portfolios.
-2. Debts holdings and progression.
-3. Support taxable percentage of assets. For example, ishtalmut can be paritally taxable. Pension is taxes change at certein age.
-4. Define RSU asset support.
-5. Connet to online read of finantial data. maybe change assets "value" to "ticket" and "quantity".
+Goal:
+Plan profile according to assets, debts and salary
+
+Bugs:
+Net calculation is too high
+
+Next:
+Support update assets
+support default debt pay
+Support merging assets with conditions of another
+Support scholarship salary
+Support sell assets with taxes
+Support sell assets with layers - Need to get buy history.
+Support buy history in paper assets + read from excel.
+Support credit_points
+
+Future features:
+Connet to online read of finantial data. maybe change assets "value" to "ticket" and "quantity".
+Support portfolio holding sub-portfolios? Not yet. 
+Define RSU asset support.
+Support taxable percentage of assets. For example, ishtalmut can be paritally taxable. Pension is taxes change at certein age.

@@ -8,7 +8,7 @@ class Debt():
                  currency="ILS"):
         self.loan_type = loan_type
         self.ammount = ammount
-        self.interest = interest / 1200  # yearly to monthly pct
+        self.interest = interest / 12  # yearly to monthly pct
         self.duration = duration
         self.date_start = date_start
         self.currency = currency
@@ -58,8 +58,8 @@ class Debt():
         if self.loan_type == 'Spicher':
             pay_debt = self.monthly_payment * (1 / (Debt.calc_spicher_monthly_pct(self.interest, self.months_left)) -
                                             (1 / Debt.calc_spicher_monthly_pct(self.interest, self.months_left - 1)))
-            # print(self.monthly_payment, pay_debt)
             pay_interest = self.monthly_payment - pay_debt
+            # print(pay_debt, pay_interest)
         self.ammount -= pay_debt
         self.interest_ammount -= pay_interest
         self.months_left -= 1

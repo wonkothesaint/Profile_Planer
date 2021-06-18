@@ -25,17 +25,21 @@ class Asset:
     # progress value and returns earned money
     def progress_month(self):
         value = self.value
-        yield_monthly = (value * self.yield_yearly_pct - value * self.management_fees_yearly_pct) / 1200
+        yield_monthly = (value * self.yield_yearly_pct - value * self.management_fees_yearly_pct) / 12
         self.value += yield_monthly
         self.gains += yield_monthly
-        dividends_monthly = value * self.dividends_yield_yearly_pct * self.tax_dividends_pct / 120000
+        dividends_monthly = value * self.dividends_yield_yearly_pct * self.tax_dividends_pct / 12
         return dividends_monthly
 
-    def deposit(self, amount):
+    def buy(self, amount):
+        self.value += amount
+
+    ### Todo support taxes and selling using layers
+    def sell(self, amount):
         self.value += amount
 
     def calc_value_after_tax(self):
-        return self.value - (self.gains * self.tax_pct / 100)
+        return self.value - (self.gains * self.tax_pct)
 
     def __str__(self):
         return currency_str(self.value) + ' before tax. ' + \

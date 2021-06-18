@@ -1,57 +1,72 @@
 {
-  "IBKR":
-  {
-    "value": 100000,
-    "deposit_fee": 0,
-    "management_fees_yearly": 0.06,
-    "yield_yearly": 7.17,
-    "dividends_yield_yearly": 1.6,
-    "tax": 25,
-    "tax_dividends": 25,
-    "gains": 10000
-  },
-  "pension":
-  {
-    "value": 100000,
-    "deposit_fee": 1,
-    "management_fees_yearly": 0.05,
-    "yield_yearly": 11.72,
-    "dividends_yield_yearly": 0,
-    "tax": 0,
-    "tax_dividends": 0,
-    "gains": 0
-  },
-  "gemel_rewards":
-  {
-    "value": 100000,
-    "deposit_fee": 0,
-    "management_fees_yearly": 0.06,
-    "yield_yearly": 7.17,
-    "dividends_yield_yearly": 1.6,
-    "tax": 25,
-    "tax_dividends": 25,
-    "gains": 200000
-  },
-  "gemel_compensation":
-  {
-    "value": 100000,
-    "deposit_fee": 0,
-    "management_fees_yearly": 0.06,
-    "yield_yearly": 7.17,
-    "dividends_yield_yearly": 1.6,
-    "tax": 25,
-    "tax_dividends": 25,
-    "gains": 200000
-  },
-  "ishtalmut":
-  {
-    "value": 100000,
-    "deposit_fee": 0,
-    "management_fees_yearly": 0.06,
-    "yield_yearly": 7.17,
-    "dividends_yield_yearly": 1.6,
-    "tax": 25,
-    "tax_dividends": 25,
-    "gains": 200000
-  }
+    "Pension S&P": {
+        "value": 78506.77,
+        "deposit_fee_pct": 0.01,
+        "management_fees_yearly_pct": 0.0005,
+        "yield_yearly_pct": 0.1172,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "Pension 50plus": {
+        "value": 16996.56,
+        "deposit_fee_pct": 0.01,
+        "management_fees_yearly_pct": 0.0005,
+        "yield_yearly_pct": 0.02,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "Gemel S&P": {
+        "value": 16107.44,
+        "deposit_fee_pct": 0.0,
+        "management_fees_yearly_pct": 0.0035,
+        "yield_yearly_pct": 0.1022,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "Gemel 50plus": {
+        "value": 19506.59,
+        "deposit_fee_pct": 0.0,
+        "management_fees_yearly_pct": 0.0035,
+        "yield_yearly_pct": 0.02,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "Gemel Independent": {
+        "value": 13395.23,
+        "deposit_fee_pct": 0.0,
+        "management_fees_yearly_pct": 0.0035,
+        "yield_yearly_pct": 0.1022,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "Keren Ishtalmut": {
+        "value": 28850.06,
+        "deposit_fee_pct": 0.0,
+        "management_fees_yearly_pct": 0.0027,
+        "yield_yearly_pct": 0.1022,
+        "dividends_yield_yearly_pct": 0.0,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    },
+    "IBKR": {
+        "value": 101139.99,
+        "deposit_fee_pct": 0.0,
+        "management_fees_yearly_pct": 0.0006,
+        "yield_yearly_pct": 0.0714,
+        "dividends_yield_yearly_pct": 0.0159,
+        "tax_pct": 0.25,
+        "tax_dividends_pct": 0.25,
+        "gains": 0.0
+    }
 }

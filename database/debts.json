@@ -1,0 +1,9 @@
+{
+    "Leumi": {
+        "loan_type": "Spicher",
+        "date_start": "2021-02-03",
+        "ammount": 66525.13,
+        "duration": 70,
+        "interest": 0.05
+    }
+}

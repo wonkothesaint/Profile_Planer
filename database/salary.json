@@ -1,15 +1,18 @@
 {
-  "gross": 25000,
-  "yearly_bonus": 50000,
+  "gross": 20000,
+  "yearly_bonus": 40000,
   "credit_points": 2.25,
-  "rewards_percents": {
+  "rewards_pct": {
+    "name": "Gemel",
     "employer": 6.5,
     "employee": 6
   },
-  "compensation_percents": {
+  "compensation_pct": {
+    "name": "Gemel_compensation",
     "employer": 8.33
   },
-  "ishtalmut_percents": {
+  "ishtalmut_pct": {
+    "name": "Keren_ishtalmut",
     "employer": 7.5,
     "employee": 2.5
   }

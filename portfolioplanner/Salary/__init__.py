@@ -3,16 +3,16 @@ from portfolioplanner import Tax
 
 class Salary:
     def __init__(
-        self,
-        gross,
-        yearly_bonus,
-        credit_points,
-        rewards_pct=None,
-        compensation_pct=None,
-        ishtalmut_pct=None,
-        pension_ceiling=Tax.pension_ceiling,
-        ishtalmut_ceiling=Tax.ishtalmut_ceiling,
-        is_rewards_compensation_seperated=True,
+            self,
+            gross,
+            yearly_bonus,
+            credit_points,
+            rewards_pct=None,
+            compensation_pct=None,
+            ishtalmut_pct=None,
+            pension_ceiling=Tax.pension_ceiling,
+            ishtalmut_ceiling=Tax.ishtalmut_ceiling,
+            is_rewards_compensation_seperated=True,
     ):
         self.gross = gross
         self.yearly_bonus = yearly_bonus
@@ -25,6 +25,41 @@ class Salary:
         self.ishtalmut_ceiling = ishtalmut_ceiling
         self.is_rewards_compensation_seperated = is_rewards_compensation_seperated
 
+        self.calculate_all_params()
+
+    def update(
+            self,
+            gross=None,
+            yearly_bonus=None,
+            credit_points=None,
+            rewards_pct=None,
+            compensation_pct=None,
+            ishtalmut_pct=None,
+            pension_ceiling=None,
+            ishtalmut_ceiling=None,
+            is_rewards_compensation_seperated=None,
+    ):
+        if gross is not None:
+            self.gross = gross
+        if yearly_bonus is not None:
+            self.yearly_bonus = yearly_bonus
+        if credit_points is not None:
+            self.credit_points = credit_points
+        if rewards_pct is not None:
+            self.rewards_pct = rewards_pct
+        if compensation_pct is not None:
+            self.compensation_pct = compensation_pct
+        if ishtalmut_pct is not None:
+            self.ishtalmut_pct = ishtalmut_pct
+        if pension_ceiling is not None:
+            self.pension_ceiling = pension_ceiling
+        if ishtalmut_ceiling is not None:
+            self.ishtalmut_ceiling = ishtalmut_ceiling
+        if is_rewards_compensation_seperated is not None:
+            self.is_rewards_compensation_seperated = is_rewards_compensation_seperated
+        self.calculate_all_params()
+
+    def calculate_all_params(self):
         self.rewards = self.calc_rewards()
         self.compensation = self.calc_compensation()
         self.ishtalmut = self.calc_ishtalmut()
@@ -37,7 +72,7 @@ class Salary:
         taxable_gross += self.yearly_bonus / 12
         ishtalmut_taxable = self.gross * self.ishtalmut_pct["employer"] / 100
         ishtalmut_taxable -= (
-            Tax.ishtalmut_ceiling * self.ishtalmut_pct["employer"] / 10
+                Tax.ishtalmut_ceiling * self.ishtalmut_pct["employer"] / 10
         )
         taxable_gross += max(ishtalmut_taxable, 0)
 
@@ -58,7 +93,7 @@ class Salary:
         severance += self.gross * self.rewards_pct["employee"] / 100
 
         taxable_ishtalmut_not_int_net = (
-            min(self.ishtalmut_ceiling, self.ishtalmut) - Tax.ishtalmut_ceiling
+                min(self.ishtalmut_ceiling, self.ishtalmut) - Tax.ishtalmut_ceiling
         )
 
         return self.taxable_gross - taxable_ishtalmut_not_int_net - tax - severance
@@ -88,7 +123,7 @@ class Salary:
                 self.rewards + self.compensation, self.pension_ceiling
             )
             severances["above_pension"] = (
-                self.rewards + self.compensation - severances["pension"]
+                    self.rewards + self.compensation - severances["pension"]
             )
         else:
             severances["pension_rewards"] = min(self.rewards, self.pension_ceiling)
@@ -96,10 +131,10 @@ class Salary:
                 self.compensation, self.pension_ceiling - severances["pension_rewards"]
             )
             severances["above_pension_rewards"] = (
-                self.rewards - severances["pension_rewards"]
+                    self.rewards - severances["pension_rewards"]
             )
             severances["above_pension_compensation"] = (
-                self.compensation - severances["pension_compensation"]
+                    self.compensation - severances["pension_compensation"]
             )
         severances["ishtalmut"] = min(self.ishtalmut, self.ishtalmut_ceiling)
         return severances

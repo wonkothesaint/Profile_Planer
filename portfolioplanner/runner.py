@@ -2,80 +2,65 @@ import Portfolio
 import Salary
 import json
 from pathlib import Path
-
-
-period = {
-    "duration": 12,
-    "pay_debts": [],
-    "default_invest": "IBKR",
-    "severance_plan": {
-        "pension_rewards": "Pension S&P",
-        "above_pension_rewards": "Gemel S&P",
-        "above_pension_compensation": "Gemel 50plus",
-        "ishtalmut": "Keren Ishtalmut",
-    },
-}
-# Zainka
-# period = {
-#     "duration": 12,
-#     "pay_debts": [],
-#     "default_invest": "IBKR",
-#     "severance_plan": {
-#         "pension_rewards": "Pension",
-#         "pension_compensation": "Pension",
-#         "above_pension_rewards": "Pension Makifa",
-#         "above_pension_compensation": "Pension Makifa",
-#         "ishtalmut": "Keren Ishtalmut",
-#     },
-# }
-
 user = "Wonko"
-expenses = 6000
 
 dirname = Path(__file__).parent
 project_dir = dirname.parent
-database_dir = project_dir / "database"
-salary_path = database_dir / user / "salary.json"
-assets_path = database_dir / user / "assets.json"
-debts_path = database_dir / user / "debts.json"
+user_database_dir = project_dir / "database" / user
+salary_path = user_database_dir / "salary.json"
+assets_path = user_database_dir / "assets.json"
+debts_path = user_database_dir / "debts.json"
+plan_path = user_database_dir / "plan.json"
 salary_args = json.loads(salary_path.read_text())
 assets_args = json.loads(assets_path.read_text())
 debts_args = json.loads(debts_path.read_text())
-
+plan = json.loads(plan_path.read_text())
 
 salary = Salary.Salary(**salary_args)
-print(salary.gross)
-print(salary.net)
-print(salary.severances)
-
+expenses = 6000
 portfolio = Portfolio.Portfolio()
 for asset in assets_args:
     portfolio.add_asset(asset, assets_args[asset])
 for debt in debts_args:
     portfolio.add_debt(debt, debts_args[debt])
 
-# Portfolio.add_asset(asset)
-plan = [period]
+for i in range(len(plan)):
+    period = plan['period' + str(i)]
+    if 'salary' in period:
+        salary.update(**period['salary'])
 
-print(portfolio.short_report())
-for period in plan:
+    print('Period ' + str(i))
+    print('Gross salary: ' + str(salary.gross))
+    print('Net salary: ' + str(int(salary.net)))
+    print('Total severances: ' + str(int(sum(salary.severances.values()))))
+
     for month in range(period["duration"]):
-        money_pool = 0
-        money_pool += salary.net
+        cashflow_in = 0
+        cashflow_out = 0
+        cashflow_in += salary.net
         for severance in salary.severances:
             if severance in period["severance_plan"]:
-                portfolio.invest_asset(
+                portfolio.buy_asset(
                     period["severance_plan"][severance], salary.severances[severance]
                 )
             elif salary.severances[severance] > 0:
                 raise Exception('Unplanned severance: ' + severance +
                                 ' with monthly ' + str(salary.severances[severance]))
-        money_pool += portfolio.progress_month()
+        portfolio.progress_month()
+        cashflow_in += portfolio.cashflow_in
+        cashflow_out += portfolio.cashflow_out
+        cashflow_out -= expenses
 
-        money_pool -= expenses
+        cashflow = cashflow_in + cashflow_out
+        if cashflow > 0:
+            portfolio.buy_asset(
+                period["default_buy"], cashflow
+            )
+        else:
+            portfolio.sell_asset(
+                period["default_sell"], cashflow
+            )
 
-        portfolio.invest_asset(
-            period["default_invest"], money_pool
-        )
-
-print(portfolio.short_report())
+    print('Cashflow: ' + str(int(cashflow_in)) + str(int(cashflow_out)) + '=' + str(int(cashflow)))
+    print('After period ' + str(i))
+    print(portfolio.short_report())
