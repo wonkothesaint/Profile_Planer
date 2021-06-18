@@ -41,25 +41,36 @@ class Portfolio:
         for asset in self.assets:
             total_before_tax += self.assets[asset].value
             total_after_tax += self.assets[asset].calc_value_after_tax()
-        asset_string = 'Asset total: \n\tBefore tax: ' + str(int(total_before_tax)) + \
-                       '\n\tAfter tax: ' + str(int(total_after_tax)) + '\n'
+        asset_string = (
+            "Asset total: \n\tBefore tax: "
+            + str(int(total_before_tax))
+            + "\n\tAfter tax: "
+            + str(int(total_after_tax))
+            + "\n"
+        )
         debt_to_pay = 0
         for debt in self.debts:
             debt_to_pay += self.debts[debt].ammount
-        debts_string = 'Debt total: ' + str(int(debt_to_pay)) + '\n'
-        return asset_string + debts_string + \
-               'Total: \n\tBefore tax: ' + str(int(total_before_tax - debt_to_pay)) + \
-               '\n\tAfter tax: ' + str(int(total_after_tax - debt_to_pay)) + '\n'
+        debts_string = "Debt total: " + str(int(debt_to_pay)) + "\n"
+        return (
+            asset_string
+            + debts_string
+            + "Total: \n\tBefore tax: "
+            + str(int(total_before_tax - debt_to_pay))
+            + "\n\tAfter tax: "
+            + str(int(total_after_tax - debt_to_pay))
+            + "\n"
+        )
 
     def full_report(self):
         total_before_tax = 0
         total_after_tax = 0
-        asset_string = 'Assets:\n'
+        asset_string = "Assets:\n"
         for asset in self.assets:
             total_before_tax += self.assets[asset].value
             total_after_tax += self.assets[asset].calc_value_after_tax()
-            asset_string += asset + ': ' + str(self.assets[asset]) + '\n'
-        debts_string = 'Debts:\n'
+            asset_string += asset + ": " + str(self.assets[asset]) + "\n"
+        debts_string = "Debts:\n"
         for debt in self.debts:
             pass
             # debts_string += debt + ': ' + str(self.debts[debt]) + '\n'

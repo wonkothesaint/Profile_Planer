@@ -2,6 +2,7 @@ import Portfolio
 import Salary
 import json
 from pathlib import Path
+
 user = "Wonko"
 
 dirname = Path(__file__).parent
@@ -25,14 +26,14 @@ for debt in debts_args:
     portfolio.add_debt(debt, debts_args[debt])
 
 for i in range(len(plan)):
-    period = plan['period' + str(i)]
-    if 'salary' in period:
-        salary.update(**period['salary'])
+    period = plan["period" + str(i)]
+    if "salary" in period:
+        salary.update(**period["salary"])
 
-    print('Period ' + str(i))
-    print('Gross salary: ' + str(salary.gross))
-    print('Net salary: ' + str(int(salary.net)))
-    print('Total severances: ' + str(int(sum(salary.severances.values()))))
+    print("Period " + str(i))
+    print("Gross salary: " + str(salary.gross))
+    print("Net salary: " + str(int(salary.net)))
+    print("Total severances: " + str(int(sum(salary.severances.values()))))
 
     for month in range(period["duration"]):
         cashflow_in = 0
@@ -44,8 +45,12 @@ for i in range(len(plan)):
                     period["severance_plan"][severance], salary.severances[severance]
                 )
             elif salary.severances[severance] > 0:
-                raise Exception('Unplanned severance: ' + severance +
-                                ' with monthly ' + str(salary.severances[severance]))
+                raise Exception(
+                    "Unplanned severance: "
+                    + severance
+                    + " with monthly "
+                    + str(salary.severances[severance])
+                )
         portfolio.progress_month()
         cashflow_in += portfolio.cashflow_in
         cashflow_out += portfolio.cashflow_out
@@ -53,14 +58,16 @@ for i in range(len(plan)):
 
         cashflow = cashflow_in + cashflow_out
         if cashflow > 0:
-            portfolio.buy_asset(
-                period["default_buy"], cashflow
-            )
+            portfolio.buy_asset(period["default_buy"], cashflow)
         else:
-            portfolio.sell_asset(
-                period["default_sell"], cashflow
-            )
+            portfolio.sell_asset(period["default_sell"], cashflow)
 
-    print('Cashflow: ' + str(int(cashflow_in)) + str(int(cashflow_out)) + '=' + str(int(cashflow)))
-    print('After period ' + str(i))
+    print(
+        "Cashflow: "
+        + str(int(cashflow_in))
+        + str(int(cashflow_out))
+        + "="
+        + str(int(cashflow))
+    )
+    print("After period " + str(i))
     print(portfolio.short_report())
